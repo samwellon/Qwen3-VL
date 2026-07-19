@@ -20,7 +20,32 @@ This generation delivers comprehensive upgrades across the board: superior text 
 
 Available in Dense and MoE architectures that scale from edge to cloud, with Instruct and reasoning‑enhanced Thinking editions for flexible, on‑demand deployment.
 
-... (full README content preserved) ...
+
+#### Key Enhancements:
+
+* **Visual Agent**: Operates PC/mobile GUIs—recognizes elements, understands functions, invokes tools, completes tasks.
+
+* **Visual Coding Boost**: Generates Draw.io/HTML/CSS/JS from images/videos.
+
+* **Advanced Spatial Perception**: Judges object positions, viewpoints, and occlusions; provides stronger 2D grounding and enables 3D grounding for spatial reasoning and embodied AI.
+
+* **Long Context & Video Understanding**: Native 256K context, expandable to 1M; handles books and hours-long video with full recall and second-level indexing.
+
+* **Enhanced Multimodal Reasoning**: Excels in STEM/Math—causal analysis, logical, evidence-based answers.
+
+* **Upgraded Visual Recognition**: Broader, higher-quality pretraining is able to “recognize everything”—celebrities, anime, products, landmarks, flora/fauna, etc.
+
+* **Expanded OCR**: Supports 32 languages (up from 10); robust in low light, blur, and tilt; better with rare/ancient characters and jargon; improved long-document structure parsing.
+
+* **Text Understanding on par with pure LLMs**: Seamless text–vision fusion for lossless, unified comprehension.
+
+
+## News
+* 2025.01.28: We have released the [Qwen2.5-VL series](https://huggingface.co/Qwen).
+
+## Citation
+
+If you find our paper and code useful in your research, please consider giving a star :star: and citation :pencil: :)
 
 <br>
 
