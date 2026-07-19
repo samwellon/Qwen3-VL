@@ -125,73 +125,6 @@ We are preparing [cookbooks](https://github.com/QwenLM/Qwen3-VL/tree/main/cookbo
 | [Long Document Understanding](https://github.com/QwenLM/Qwen3-VL/blob/main/cookbooks/long_document_understanding.ipynb) | Achieve rigorous semantic comprehension of ultra-long documents. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/QwenLM/Qwen3-VL/blob/main/cookbooks/long_document_understanding.ipynb) |
 | [Spatial Understanding](https://github.com/QwenLM/Qwen3-VL/blob/main/cookbooks/spatial_understanding.ipynb) | See, understand and reason about the spatial information | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/QwenLM/Qwen3-VL/blob/main/cookbooks/spatial_understanding.ipynb) |
 
-## Quickstart
-
-Below, we provide simple examples to show how to use Qwen3-VL with 🤖 ModelScope and 🤗 Transformers.
-
-```
-# The Qwen3-VL model requires transformers >= 4.57.0
-pip install "transformers>=4.57.0"
-```
-
-### 🤖 ModelScope
-We strongly advise users especially those in mainland China to use ModelScope. `snapshot_download` can help you solve issues concerning downloading checkpoints.
-
-### Using 🤗 Transformers to Chat
-
-Here we show a code snippet to show you how to use the chat model with `transformers`:
-
-```python
-from transformers import AutoModelForImageTextToText, AutoProcessor
-
-# default: Load the model on the available device(s)
-model = AutoModelForImageTextToText.from_pretrained(
-    "Qwen/Qwen3-VL-235B-A22B-Instruct", dtype="auto", device_map="auto"
-)
-
-# We recommend enabling flash_attention_2 for better acceleration and memory saving, especially in multi-image and video scenarios.
-# model = AutoModelForImageTextToText.from_pretrained(
-#     "Qwen/Qwen3-VL-235B-A22B-Instruct",
-#     dtype=torch.bfloat16,
-#     attn_implementation="flash_attention_2",
-#     device_map="auto",
-# )
-
-processor = AutoProcessor.from_pretrained("Qwen/Qwen3-VL-235B-A22B-Instruct")
-
-messages = [
-    {
-        "role": "user",
-        "content": [
-            {
-                "type": "image",
-                "image": "https://qianwen-res.oss-cn-beijing.aliyuncs.com/Qwen-VL/assets/demo.jpeg",
-            },
-            {"type": "text", "text": "Describe this image."},
-        ],
-    }
-]
-
-# Preparation for inference
-inputs = processor.apply_chat_template(
-    messages,
-    tokenize=True,
-    add_generation_prompt=True,
-    return_dict=True,
-    return_tensors="pt"
-)
-inputs = inputs.to(model.device)
-
-# Inference: Generation of the output
-generated_ids = model.generate(**inputs, max_new_tokens=128)
-generated_ids_trimmed = [
-    out_ids[len(in_ids) :] for in_ids, out_ids in zip(inputs.input_ids, generated_ids)
-]
-output_text = processor.batch_decode(
-    generated_ids_trimmed, skip_special_tokens=True, clean_up_tokenization_spaces=False
-)
-print(output_text)
-```
 
 ## Citation
 
@@ -207,13 +140,6 @@ If you find our paper and code useful in your research, please consider giving a
       author={Shuai Bai and Yuxuan Cai and Ruizhe Chen and Keqin Chen and Xionghui Chen and Zesen Cheng and Lianghao Deng and Wei Ding and Chang Gao and Chunjiang Ge and Wenbin Ge and Zhifang Guo and Qidong Huang and Jie Huang and Fei Huang and Binyuan Hui and Shutong Jiang and Zhaohai Li and Mingsheng Li and Mei Li and Kaixin Li and Zicheng Lin and Junyang Lin and Xuejing Liu and Jiawei Liu and Chenglong Liu and Yang Liu and Dayiheng Liu and Shixuan Liu and Dunjie Lu and Ruilin Luo and Chenxu Lv and Rui Men and Lingchen Meng and Xuancheng Ren and Xingzhang Ren and Sibo Song and Yuchong Sun and Jun Tang and Jianhong Tu and Jianqiang Wan and Peng Wang and Pengfei Wang and Qiuyue Wang and Yuxuan Wang and Tianbao Xie and Yiheng Xu and Haiyang Xu and Jin Xu and Zhibo Yang and Mingkun Yang and Jianxin Yang and An Yang and Bowen Yu and Fei Zhang and Hang Zhang and Xi Zhang and Bo Zheng and Humen Zhong and Jingren Zhou and Fan Zhou and Jing Zhou and Yuanzhi Zhu and Ke Zhu},
 	  journal={arXiv preprint arXiv:2511.21631},
       year={2025}
-}
-
-@article{Qwen2.5-VL,
-  title={Qwen2.5-VL Technical Report},
-  author={Bai, Shuai and Chen, Keqin and Liu, Xuejing and Wang, Jialin and Ge, Wenbin and Song, Sibo and Dang, Kai and Wang, Peng and Wang, Shijie and Tang, Jun and Zhong, Humen and Zhu, Yuanzhi and Yang, Mingkun and Li, Zhaohai and Wan, Jianqiang and Wang, Pengfei and Ding, Wei and Fu, Zheren and Xu, Yiheng and Ye, Jiabo and Zhang, Xi and Xie, Tianbao and Cheng, Zesen and Zhang, Hang and Yang, Zhibo and Xu, Haiyang and Lin, Junyang},
-  journal={arXiv preprint arXiv:2502.13923},
-  year={2025}
 }
 ```
 
