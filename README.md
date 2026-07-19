@@ -31,7 +31,7 @@ Available in Dense and MoE architectures that scale from edge to cloud, with Ins
 
 * **Long Context & Video Understanding**: Native 256K context, expandable to 1M; handles books and hours-long video with full recall and second-level indexing.
 
-* **Enhanced Multimodal Reasoning**: Excels in STEM/Math—causal analysis, logical, evidence-based answers.
+* **Enhanced Multimodal Reasoning**: Excels in STEM/Math—causal analysis and logical, evidence-based answers.
 
 * **Upgraded Visual Recognition**: Broader, higher-quality pretraining is able to “recognize everything”—celebrities, anime, products, landmarks, flora/fauna, etc.
 
@@ -39,15 +39,7 @@ Available in Dense and MoE architectures that scale from edge to cloud, with Ins
 
 * **Text Understanding on par with pure LLMs**: Seamless text–vision fusion for lossless, unified comprehension.
 
-
-## News
-* 2025.01.28: We have released the [Qwen2.5-VL series](https://huggingface.co/Qwen).
-
-## Citation
-
-If you find our paper and code useful in your research, please consider giving a star :star: and citation :pencil: :)
-
-<br>
+## Related Projects
 
 1. related project [DeepSeek-VL2](https://github.com/deepseek-ai/DeepSeek-VL2)
 2. related project [Aria](https://github.com/rhymes-ai/Aria)
